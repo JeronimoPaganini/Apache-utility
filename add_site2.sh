@@ -1,5 +1,5 @@
 #!/bin/bash 
-# Jeronimo (Flexaspect)
+# shev92k70 (Jeronimo)
 if [ "$(id -u)" != "0" ]; then
    echo "This script need to be running from superuser rights"
    exit 0
