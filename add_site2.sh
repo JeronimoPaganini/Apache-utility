@@ -1,4 +1,5 @@
 #!/bin/bash 
+#!/bin/sh
 # shev92k70 (Jeronimo)
 
 if [ "$(id -u)" != "0" ]; then
@@ -69,6 +70,9 @@ then
 				a2ensite $domain				
 				#a2enconf /etc/apache2/sites-available/$domain
 				echo "127.0.0.1 $domain" >> /etc/hosts
+				find $site_dir -type f -exec chmod 644 {} \;
+				find $site_dir d -exec chmod 755 {} \;	
+				chown -R www-data:www-data $site_dir			
 				while true; do
 					echo "Reload apche2? (y/n)"
 				    read yn
