@@ -1,4 +1,5 @@
 #!/bin/bash 
+#!/bin/sh 
 # shev92k70 (Jeronimo)
 _zenity="/usr/bin/zenity"
 _out="/tmp/whois.output.$$"
@@ -66,6 +67,11 @@ do
 						' >> /etc/apache2/sites-available/$domain.conf"
 						echo -e $PASSWD | sudo -S bash -c "a2ensite $domain"
 						echo -e $PASSWD | sudo -S bash -c "echo '127.0.0.1 $domain' >> /etc/hosts"
+						who="$(whoami)"
+						echo -e $PASSWD | sudo -S bash -c "usermod -a -G www-data $who"
+						echo -e $PASSWD | sudo -S bash -c "chown -R $who:www-data $site_dir"
+						echo -e $PASSWD | sudo -S bash -c "find $site_dir -type f -exec chmod 644 {} \;"
+						echo -e $PASSWD | sudo -S bash -c "find $site_dir d -exec chmod 755 {} \;"						
 						if zenity --question --text="Reload apche2?"; 
 						then
 							echo -e $PASSWD | sudo -S  service apache2 reload 2>&1 | zenity --text-info --height=500 --width=400 --title="Progress status";
