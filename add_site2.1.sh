@@ -1,6 +1,5 @@
 #!/bin/bash 
 # shev92k70 (Jeronimo)
-
 _zenity="/usr/bin/zenity"
 _out="/tmp/whois.output.$$"
 while [ "$(id -u)" != "0" ];
